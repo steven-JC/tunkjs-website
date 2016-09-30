@@ -15,12 +15,17 @@ tunk.mixin(request());
 tunk.mixin(cookie);
 
 
-require.context('./modules', true, /\.js$/);
+var modules = require.context('./modules', true, /\.js$/);
+modules.keys().forEach((item)=>{
+	console.log(item.replace(/\./,'./modules'))
+	modules(item);
+});
 
 
 new Vue({
-	el: 'body',
+	el: 'main',
 	components: {
-		App: require('./pages/Counter.vue'),
-	}
+		app: require('./pages/Counter.vue'),
+	},
+	template:'<app></app>'
 });

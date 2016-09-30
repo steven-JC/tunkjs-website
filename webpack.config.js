@@ -1,12 +1,13 @@
 'use strict';
+
+const IS_PRD_MODE = (process.env.NODE_ENV === 'production' ? true : false);
+
 // 清除生成目录文件
 let exec = require('child_process').execSync;
 exec('rm -rf build/*');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const IS_PRD_MODE = false;
 
 let path = require('path');
 let webpack = require('webpack');
@@ -19,6 +20,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.vue', '.js'],
 		alias: {
+            vue: 'vue/dist/vue.js',
 			utils: path.join(__dirname, '/src/utils'),
 			style: path.join(__dirname, '/src/style'),
 			components: path.join(__dirname, '/src/components'),
@@ -98,7 +100,7 @@ module.exports = {
                 collapseWhitespace : IS_PRD_MODE, // 生产环境开启压缩
             },
             filename : 'index.html',
-            inject : 'body',
+            inject : 'html',
             hash : !IS_PRD_MODE, // 开发环境添加query hash
             template : 'index.template.html',
         }));
