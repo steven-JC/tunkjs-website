@@ -1,32 +1,13 @@
 <template>
-  <section  v-for="comp in compons">
-    <component :is='comp'></component>
-  </section>
+  <div>
+  	APP   <router-link to="/counter">Go to Counter</router-link>
+  </div>
 </template>
 
-<style scoped>
-
-
-
-</style>
 <script>
-	
-	var compons=require('./tests/main');
-
 	export default {
-
-	data() {
-		return {
-			compons:Object.keys(compons),
-		};
-	},
-
-	components:compons,
-
-	created(){
-		console.log(compons);
-	},
-
-    
-}
+		created(){
+			console.log('APP');
+		},
+	}
 </script>

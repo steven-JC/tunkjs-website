@@ -71,7 +71,7 @@ module.exports = {
             options: {
                 vue: {
                     loaders: {
-                        css: ExtractTextPlugin.extract({ fallbackLoader:'vue-style-loader', loader: ['css-loader','less-loader']}),
+                        css: ExtractTextPlugin.extract({ fallbackLoader:'vue-style-loader', loader: ['css-loader']}),
                         js: 'babel',
                         html: 'vue-html-loader',
                     }
@@ -92,7 +92,7 @@ module.exports = {
             minChunks: 2,
         }));
 
-        r.push(new ExtractTextPlugin('app.css'));
+        r.push(new ExtractTextPlugin('[name].bundle.css'));
 
         r.push(new HtmlWebpackPlugin({
             minify : {
